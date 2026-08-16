@@ -4,7 +4,10 @@ st.set_page_config(page_title="IMS Login")
 
 users = {
     "admin": "admin123",
-    "floyd": "floyd123"
+    "floyd": "floyd123",
+    "priya": "priya123",
+    "arjun": "arjun123",
+    "sneha": "sneha123"
 }
 
 max_try = 3
@@ -44,5 +47,16 @@ else:
 
 if st.session_state.login:
     st.subheader("Inventory Dashboard")
+
     if st.button("Show Inventory Count"):
         st.info("Total items in inventory: 128")
+
+    qty = st.number_input("Enter quantity to add", min_value=0, max_value=1000, step=1)
+    if st.button("Add Quantity"):
+        if qty <= 0:
+            st.warning("Quantity must be greater than 0.")
+        else:
+            st.success(f"{qty} items added to inventory.")
+
+    lvl = st.slider("Set reorder level", min_value=0, max_value=500, value=50)
+    st.write(f"Reorder alert will trigger when stock falls below {lvl} items.")
